@@ -42,7 +42,7 @@ runs:
       run: |
         phpcs --version
         PARAM='-n'
-        if [[ ${{ inputs.fail_on_warnings }} == "false" ]] then; $PARAM=''; fi
+        if [[ ${{ inputs.fail_on_warnings }} == "false" ]]; then PARAM=''; fi
         phpcs --standard=../phpcs/Backdrop --report=../phpcs/Backdrop/Reports/Github.php --basepath=. $PARAM *
 
 branding:
