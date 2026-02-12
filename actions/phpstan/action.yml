@@ -1,0 +1,83 @@
+name: "PHPStan"
+description: "Runs PHPStan (PHP Static Analysis Tool) on your code."
+inputs:
+  php_version:
+    description: "PHP version to run on"
+    required: false
+    type: string
+    default: "8.3"
+  config_path:
+    description: "Path to phpstan.neon file relative to repo base directory"
+    required: false
+    type: string
+    default: ""
+  module_dependencies:
+    description: "Contrib module(s) this module depends on, comma separated."
+    required: false
+    type: string
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup env
+      shell: bash
+      run: |
+        : Setup env
+        echo "REPO_NAME=${PWD##*/}" >> $GITHUB_ENV
+
+    - name: Setup PHP with PHPStan tool
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ inputs.php_version }}
+        tools: phpstan
+        coverage: none
+
+    - name: Checkout Backdrop core
+      uses: actions/checkout@v6
+      with:
+        repository: backdrop/backdrop
+
+    - name: Checkout module
+      uses: actions/checkout@v6
+      with:
+        path: modules/${{ env.REPO_NAME }}
+
+    - name: Fetch dependencies if any
+      shell: bash
+      run: |
+        : Fetch dependencies if any
+        cd ./modules
+        DEPS=${{ inputs.module_dependencies }}
+        BASE='https://github.com/backdrop-contrib'
+        IFS=',' read -r -a PROJECTS <<< "$DEPS"
+        for PROJECT in "${PROJECTS[@]}"
+        do
+          # Trim space.
+          PROJECT=$(echo -n $PROJECT)
+          # Check existence, GitHub asks for credentials with inexistent repos.
+          HTTP_CODE=$(curl -s -o /dev/null -I -w '%{http_code}' $BASE/$PROJECT)
+          if [[ $HTTP_CODE == '200' ]]
+          then
+            echo "Cloning $BASE/$PROJECT.git"
+            git clone -q --depth 1 "$BASE/$PROJECT.git"
+          else
+            echo "Project $PROJECT not found"
+            exit 1
+          fi
+        done
+
+    - name: Setup and run phpstan
+      shell: bash
+      run: |
+        : Setup and run phpstan
+        cd modules/${{ env.REPO_NAME }}
+        PARAMS='--error-format=github --no-progress'
+        INPUT=${{ inputs.config_path }}
+        // Sanitize a bit.
+        CONF=${INPUT%% *}
+        if [[ $CONF != '' ]]
+        then
+          PARAMS+=" -c $CONF"
+        fi
+        phpstan analyze $PARAMS *
