@@ -2,6 +2,16 @@
 
 Experiments re GitHub actions
 
+To use such a predefined action you'd create a directory
+`.github/workflows/` in your repository and add a yml file (whatever the
+name is).
+
+Example: `.github/workflows/code-checks.yml`
+
+All below examples are the minimal setup (without params) and all run on
+pull requests only.
+
+
 ## Using "phpcs_full":
 
 ```yml
