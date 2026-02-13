@@ -21,6 +21,28 @@ Available (optional) parameters:
 - php_version: defaults to 8.3
 - fail_on_warnings: defaults to true
 
+## Using "simpletest":
+
+```yml
+name: Simpletest
+on: [pull_request]
+jobs:
+  functional_test:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Tests
+        uses: indigoxela/gha_experiments/actions/simpletest@main
+        with:
+          module_dependencies: "entity_plus, entity_ui"
+```
+
+Available (optional) parameters:
+
+- php_version: defaults to 8.3
+- db_version: defaults to mariadb-10.11
+- module_dependencies: default empty
+
 ## Using "phpstan":
 
 ```yml
