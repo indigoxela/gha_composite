@@ -55,6 +55,9 @@ runs:
         # Setup VirtualHost
         VHOST_FILE='/etc/apache2/sites-available/000-default.conf'
         PHP_VERSION=$(echo -n ${{ inputs.php_version }})
+        which sudo
+        whoami
+        sudo ls -la /etc/apache2/sites-available/
         sudo echo -e "<VirtualHost *:80>\nDocumentRoot $PWD" > $VHOST_FILE
         sudo echo -e "<Directory $PWD>\n  AllowOverride All\n  Require all granted\n</Directory>" >> $VHOST_FILE
         sudo echo '<FilesMatch ".+\.php$">' >> $VHOST_FILE
