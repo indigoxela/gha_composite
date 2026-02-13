@@ -62,8 +62,8 @@ runs:
         echo "</VirtualHost>" >> default.conf
         sudo mv default.conf /etc/apache2/sites-available/000-default.conf
         # Install Apache modules
-        sudo apt-get -q update
-        sudo apt-get -o Dpkg::Progress-Fancy="0" install libapache2-mod-fcgid
+        sudo apt-get -q update > /dev/null
+        sudo apt-get -q install libapache2-mod-fcgid > /dev/null
         sudo a2enmod rewrite proxy fcgid proxy_fcgi
         sudo chmod 751 /home/runner
         sudo systemctl start apache2.service
