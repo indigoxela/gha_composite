@@ -29,14 +29,14 @@ runs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ inputs.php_version }}
+        php-version: "${{ inputs.php_version }}"
         tools: none
         coverage: none
 
     - name: Install database
       uses: shogo82148/actions-setup-mysql@v1
       with:
-        mysql-version: ${{ inputs.db_version }}
+        mysql-version: "${{ inputs.db_version }}"
         root-password: 'root'
         auto-start: true
 
