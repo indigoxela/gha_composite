@@ -36,7 +36,7 @@ runs:
     - name: Install database
       uses: shogo82148/actions-setup-mysql@v1
       with:
-        mysql-version: "{{ inputs.db_version }}"
+        mysql-version: ${{ inputs.db_version }}
         root-password: 'root'
         auto-start: true
 
