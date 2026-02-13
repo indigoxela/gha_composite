@@ -52,6 +52,24 @@ Available (optional) parameters:
 - db_version: defaults to mariadb-10.11
 - module_dependencies: default empty
 
+Additional code sample overriding all parameters:
+
+```yml
+name: Simpletest
+on: [pull_request]
+jobs:
+  functional_test:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Tests
+        uses: indigoxela/gha_experiments/actions/simpletest@main
+        with:
+          php_version: "8.5"
+          db_version: "mysql-8.0"
+          module_dependencies: "entity_plus,entity_ui"
+```
+
 ## Using "phpstan":
 
 ```yml
