@@ -61,7 +61,7 @@ runs:
         echo "</FilesMatch>" >> default.conf
         echo "</VirtualHost>" >> default.conf
         sudo mv default.conf /etc/apache2/sites-available/000-default.conf
-        # Install Apache modules
+        # Install and enable Apache modules
         sudo apt-get -q update > /dev/null
         sudo apt-get -q install libapache2-mod-fcgid > /dev/null
         sudo a2enmod rewrite proxy fcgid proxy_fcgi
