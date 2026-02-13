@@ -33,8 +33,6 @@ jobs:
     steps:
       - name: Run Tests
         uses: indigoxela/gha_experiments/actions/simpletest@main
-        with:
-          module_dependencies: "entity_plus, entity_ui"
 ```
 
 Available (optional) parameters:
