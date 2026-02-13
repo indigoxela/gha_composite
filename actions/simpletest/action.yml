@@ -53,17 +53,14 @@ runs:
       run: |
         : Setup Apache
         # Setup VirtualHost
-        VHOST_FILE='/etc/apache2/sites-available/000-default.conf'
         PHP_VERSION=$(echo -n ${{ inputs.php_version }})
-        which sudo
-        whoami
-        sudo ls -la /etc/apache2/sites-available/
-        sudo echo -e "<VirtualHost *:80>\nDocumentRoot $PWD" > $VHOST_FILE
-        sudo echo -e "<Directory $PWD>\n  AllowOverride All\n  Require all granted\n</Directory>" >> $VHOST_FILE
-        sudo echo '<FilesMatch ".+\.php$">' >> $VHOST_FILE
-        sudo echo "  SetHandler \"proxy:unix:/run/php/php$PHP_VERSION-fpm.sock|fcgi://localhost\"" >> $VHOST_FILE
-        sudo echo "</FilesMatch>" >> $VHOST_FILE
-        sudo echo "</VirtualHost>" >> $VHOST_FILE
+        echo -e "<VirtualHost *:80>\nDocumentRoot $PWD" > default.conf
+        echo -e "<Directory $PWD>\n  AllowOverride All\n  Require all granted\n</Directory>" >> default.conf
+        echo '<FilesMatch ".+\.php$">' >> default.conf
+        echo "  SetHandler \"proxy:unix:/run/php/php$PHP_VERSION-fpm.sock|fcgi://localhost\"" >> default.conf
+        echo "</FilesMatch>" >> default.conf
+        echo "</VirtualHost>" >> default.conf
+        sudo mv default.conf /etc/apache2/sites-available/000-default.conf
         # Install Apache modules
         sudo apt-get install libapache2-mod-fcgid
         sudo a2enmod rewrite proxy fcgid proxy_fcgi
