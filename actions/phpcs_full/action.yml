@@ -20,8 +20,8 @@ runs:
       run: |
         echo 'REF=${{ github.action_ref }}' >> $GITHUB_ENV
         echo 'REPO=${{ github.action_repository }}' >> $GITHUB_ENV
-        echo 'STAT=${{ github.action_status }}' >> $GITHUB_ENV
-        echo $GITHUB_ENV
+        echo 'ref ${{ env.REF }}'
+        echo 'repo ${{ env.REPO }}'
 
     - name: Setup PHP with CodeSniffer tool
       uses: shivammathur/setup-php@v2
