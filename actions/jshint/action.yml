@@ -27,7 +27,7 @@ runs:
       shell: bash
       run: |
         : Install and run jshint
-        sudo npm install --quiet -g jshint
+        sudo npm install --no-audit --no-fund -g jshint
         # Fallback config.
         if [ -n '.jshintrc' ]
         then
