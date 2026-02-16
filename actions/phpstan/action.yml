@@ -24,10 +24,14 @@ runs:
       shell: bash
       env:
         ACTION_REF: ${{ github.action_ref }}
+        ACTION_PATH: ${{ github.action_path }}
+        ACTION_REPO: ${{ github.action_repository }}
       run: |
         : Setup env
         echo "REPO_NAME=${PWD##*/}" >> $GITHUB_ENV
         echo 'action ref is: ${{ env.ACTION_REF }}'
+        echo 'action path is: ${{ env.ACTION_PATH }}'
+        echo 'action repo is: ${{ env.ACTION_REPO }}'
 
     - name: Setup PHP with PHPStan tool
       uses: shivammathur/setup-php@v2
