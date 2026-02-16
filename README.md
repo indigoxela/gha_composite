@@ -93,3 +93,21 @@ Available (optional) parameters:
 
 You *will* need a phpstan.neon file to make use of this action, its path is
 configurable.
+
+## Using "jshint":
+
+```yml
+name: JSHint
+on: [pull_request]
+jobs:
+  js_linter:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run JSHint
+        uses: indigoxela/gha_experiments/actions/jshint@main
+```
+
+Available (optional) parameter:
+
+- paths_to_check: defaults to current dir
