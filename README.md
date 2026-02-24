@@ -1,10 +1,10 @@
-# Experiments with GitHub Actions
+# Custom composite GitHub Actions
+
+For Backdrop CMS.
 
 To use such a predefined action you'd create a directory
 `.github/workflows/` in your repository and add a yml file (whatever the
 name is).
-
-Example: `.github/workflows/code-checks.yml`
 
 Most below copy-paste examples are the minimal setup (without params) and all run
 on pull requests only.
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run PHP_CodeSniffer
-        uses: indigoxela/gha_experiments/actions/phpcs_full@main
+        uses: indigoxela/gha_composite/actions/phpcs_full@main
 ```
 
 Available (optional) parameters:
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Tests
-        uses: indigoxela/gha_experiments/actions/simpletest@main
+        uses: indigoxela/gha_composite/actions/simpletest@main
 ```
 
 Available (optional) parameters:
@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Tests
-        uses: indigoxela/gha_experiments/actions/simpletest@main
+        uses: indigoxela/gha_composite/actions/simpletest@main
         with:
           php_version: "8.5"
           db_version: "mysql-8.0"
@@ -85,7 +85,7 @@ jobs:
         php-versions: ['7.4', '8.5']
     steps:
       - name: Run Tests
-        uses: indigoxela/gha_experiments/actions/simpletest@main
+        uses: indigoxela/gha_composite/actions/simpletest@main
         with:
           php_version: ${{ matrix.php-versions }}
 ```
@@ -101,7 +101,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run PHPStan
-        uses: indigoxela/gha_experiments/actions/phpstan@main
+        uses: indigoxela/gha_composite/actions/phpstan@main
 ```
 
 Available (optional) parameters:
@@ -125,7 +125,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run JSHint
-        uses: indigoxela/gha_experiments/actions/jshint@main
+        uses: indigoxela/gha_composite/actions/jshint@main
 ```
 
 Available (optional) parameter:
