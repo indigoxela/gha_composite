@@ -1,6 +1,6 @@
 # Custom composite GitHub Actions
 
-For Backdrop CMS.
+For Backdrop CMS contrib projects.
 
 To use such a predefined action you'd create a directory
 `.github/workflows/` in your repository and add a yml file (whatever the
@@ -11,7 +11,11 @@ on pull requests only.
 You can use all of them in the same repo, but need a workflow file for each of
 them.
 
+Note that this isn't the official repository. That's [here](https://github.com/backdrop-ops/gha)
+
 ## Using "phpcs_full":
+
+`.github/workflows/phpcs.yml`
 
 ```yml
 name: Coding standards
@@ -31,6 +35,8 @@ Available (optional) parameters:
 - fail_on_warnings: defaults to true
 
 ## Using "simpletest":
+
+`.github/workflows/simpletest.yml`
 
 ```yml
 name: Simpletest
@@ -92,6 +98,8 @@ jobs:
 
 ## Using "phpstan":
 
+`.github/workflows/phpstan.yml`
+
 ```yml
 name: PHPStan
 on: [pull_request]
@@ -115,6 +123,8 @@ You *will* need a phpstan.neon file to make use of this action, its path is
 configurable.
 
 ## Using "jshint":
+
+`.github/workflows/jshint.yml`
 
 ```yml
 name: JSHint
