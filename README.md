@@ -27,6 +27,7 @@ jobs:
     steps:
       - name: Run PHP_CodeSniffer
         uses: indigoxela/gha_composite/actions/phpcs_full@main
+
 ```
 
 Available (optional) parameters:
@@ -48,6 +49,7 @@ jobs:
     steps:
       - name: Run Tests
         uses: indigoxela/gha_composite/actions/simpletest@main
+
 ```
 
 Available (optional) parameters:
@@ -72,6 +74,7 @@ jobs:
           php_version: "8.5"
           db_version: "mysql-8.0"
           module_dependencies: "entity_plus,entity_ui"
+
 ```
 
 ### Run Simpletest on multiple PHP versions:
@@ -94,6 +97,7 @@ jobs:
         uses: indigoxela/gha_composite/actions/simpletest@main
         with:
           php_version: ${{ matrix.php-versions }}
+
 ```
 
 ## Using "phpstan":
@@ -110,6 +114,7 @@ jobs:
     steps:
       - name: Run PHPStan
         uses: indigoxela/gha_composite/actions/phpstan@main
+
 ```
 
 Available (optional) parameters:
@@ -136,8 +141,9 @@ jobs:
     steps:
       - name: Run JSHint
         uses: indigoxela/gha_composite/actions/jshint@main
+
 ```
 
 Available (optional) parameter:
 
-- paths_to_check: defaults to current dir
+- paths_to_check: defaults to current working directory
