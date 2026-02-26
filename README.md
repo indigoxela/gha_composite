@@ -2,6 +2,8 @@
 
 For Backdrop CMS contrib projects.
 
+Note that this isn't the official repository. That's [here](https://github.com/backdrop-ops/gha)
+
 To use such a predefined action you'd create a directory
 `.github/workflows/` in your repository and add a yml file (whatever the
 name is).
@@ -10,8 +12,6 @@ Most below copy-paste examples are the minimal setup (without params) and all ru
 on pull requests only.
 You can use all of them in the same repo, but need a workflow file for each of
 them.
-
-Note that this isn't the official repository. That's [here](https://github.com/backdrop-ops/gha)
 
 ## Using "phpcs_full":
 
