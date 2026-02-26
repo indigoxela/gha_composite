@@ -4,9 +4,8 @@ For Backdrop CMS contrib projects.
 
 Note that this isn't the official repository. That's [here](https://github.com/backdrop-ops/gha)
 
-To use such a predefined action you'd create a directory
-`.github/workflows/` in your repository and add a yml file (whatever the
-name is).
+To use such a predefined action, create a directory `.github/workflows/`
+in your repository and add a yml file (whatever the name is).
 
 Most below copy-paste examples are the minimal setup (without params) and all run
 on pull requests only.
