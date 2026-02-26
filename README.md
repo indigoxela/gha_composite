@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run PHP_CodeSniffer
-        uses: indigoxela/gha_composite/actions/phpcs_full@main
+        uses: indigoxela/gha_composite/actions/phpcs_full@v1
 
 ```
 
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Tests
-        uses: indigoxela/gha_composite/actions/simpletest@main
+        uses: indigoxela/gha_composite/actions/simpletest@v1
 
 ```
 
@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Tests
-        uses: indigoxela/gha_composite/actions/simpletest@main
+        uses: indigoxela/gha_composite/actions/simpletest@v1
         with:
           php_version: "8.5"
           db_version: "mysql-8.0"
@@ -93,7 +93,7 @@ jobs:
         php-versions: ['7.4', '8.5']
     steps:
       - name: Run Tests
-        uses: indigoxela/gha_composite/actions/simpletest@main
+        uses: indigoxela/gha_composite/actions/simpletest@v1
         with:
           php_version: ${{ matrix.php-versions }}
 
@@ -112,7 +112,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run PHPStan
-        uses: indigoxela/gha_composite/actions/phpstan@main
+        uses: indigoxela/gha_composite/actions/phpstan@v1
 
 ```
 
@@ -139,7 +139,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run JSHint
-        uses: indigoxela/gha_composite/actions/jshint@main
+        uses: indigoxela/gha_composite/actions/jshint@v1
 
 ```
 
