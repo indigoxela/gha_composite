@@ -11,6 +11,11 @@ inputs:
     required: false
     type: boolean
     default: true
+  ignore_pattern:
+    description: "Comma separated list of patterns for files not to check."
+    required: false
+    type: string
+    default: ""
 
 runs:
   using: "composite"
@@ -42,6 +47,19 @@ runs:
       shell: bash
       run: |
         : Prepare param and run phpcs
-        PARAM='-n'
-        if [[ ${{ inputs.fail_on_warnings }} == "true" ]]; then PARAM=''; fi
-        phpcs --standard=../phpcs/Backdrop --report=../phpcs/Backdrop/Reports/Github.php --basepath=. $PARAM *
+        IGNORE=${{ inputs.ignore_pattern }}
+        # Remove spaces.
+        IGNORE="${IGNORE// /}"
+        FOW=${{ inputs.fail_on_warnings }}
+        PARAMS=''
+
+        if [ "$IGNORE" != "" ]
+        then
+          PARAMS=" --ignore=$IGNORE"
+        fi
+        if [[ "$FOW" != "true" ]]
+        then
+          PARAMS="$PARAMS -n"
+        fi
+
+        phpcs --standard=../phpcs/Backdrop --report=../phpcs/Backdrop/Reports/Github.php --basepath=. $PARAMS *

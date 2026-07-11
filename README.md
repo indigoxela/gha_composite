@@ -32,6 +32,7 @@ jobs:
 Available (optional) parameters:
 
 - php_version: defaults to 8.3
+- ignore_pattern: defaults to empty string (no files ignored)
 - fail_on_warnings: defaults to true
 
 ## Using "simpletest":
