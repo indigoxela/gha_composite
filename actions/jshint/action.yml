@@ -29,11 +29,8 @@ runs:
         : Install and run jshint
         sudo npm install --no-audit --no-fund -g jshint
         # Fallback config.
-        pwd
-        ls -la
-        if [ -n '.jshintrc' ]
+        if [ ! -f '.jshintrc' ]
         then
-          echo 'jshintrc not found'
           cp ${{ env.ACTION_PATH }}/.jshintrc .
         fi
         jshint --reporter=${{ env.ACTION_PATH }}/reporter.js ${{ inputs.paths_to_check }}
